@@ -39,8 +39,12 @@ def stratified_split(df, test_size=0.2, random_state=42):
     X_train, X_test = sklearn.model_selection.train_test_split(df, test_size=test_size, random_state=random_state, stratify=income_categories(df))
     return (X_train, X_test)
 
-# Step 4 - explore_correlations (not yet solved)
-# TODO: implement
+# Step 4 - explore_correlations
+def explore_correlations(df):
+    # TODO: Pearson correlation of every numeric column with median_house_value, sorted descending, target excluded.
+    vals = df.corr(method='pearson', numeric_only=True)['median_house_value']
+    vals = vals.drop('median_house_value')
+    return vals.sort_values(ascending=False)
 
 # Step 5 - add_ratio_features (not yet solved)
 # TODO: implement
